@@ -15,7 +15,7 @@ class AddStartAtAndEndAtToEventsTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             $table->timestamp('start_at')->after('slug');
-            $table->timestamp('end_at')->after('start_at');
+            $table->timestamp('end_at');
         });
     }
 

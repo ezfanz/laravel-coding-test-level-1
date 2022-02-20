@@ -32,12 +32,12 @@
                             <br>
                         <div class="form-group">
                             <label for="start_at">Event Start At</label>
-                             <input type="date" name="start_at" value="{{ $event->start_at}}">
+                             <input type="date" name="start_at" required>
                         </div>
                             <br>
                         <div class="form-group">
                             <label for="start_at">Event End At</label>
-                             <input type="date" name="end_at" value="{{ $event->end_at}}">
+                             <input type="date" name="end_at"  required>
                         </div>
                         <br>
 

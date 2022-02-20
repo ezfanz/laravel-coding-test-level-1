@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Traits\Uuids;
+use App\Mail\EventCreation;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
 {
@@ -15,8 +17,8 @@ class Event extends Model
 
     protected $fillable = ['name', 'slug', 'start_at', 'end_at', 'updated_at'];
 
-    // protected $dates = [
-    //     'start_at',
-    //     'end_at'
-    // ];
+    public function sendNotificationEmail()
+    {
+        Mail::to(config('mail.notification_recipient'))->queue(new EventCreation($this));
+    }
 }

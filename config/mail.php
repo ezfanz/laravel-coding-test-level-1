@@ -96,6 +96,8 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'notification_recipient' => 'irfanzulkefly144@gmail.com',
+
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings

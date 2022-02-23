@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
 {
-    use HasFactory, Uuids, SoftDeletes, HasApiTokens;
+    use HasFactory, Uuids, SoftDeletes;
 
     protected $table = "events";
 

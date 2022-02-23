@@ -15,15 +15,21 @@ use App\Http\Controllers\Api\V1\EventApiController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::group(['prefix' => 'v1'], function () {
-    Route::get('/events/active-events', [EventApiController::class, 'activeEvent']);
-    Route::apiResource('events', EventApiController::class)->except([
-        'update'
-    ]);
-    Route::patch('/events/{id}', [EventApiController::class, 'edit']);
-    Route::put('/events/{id}', [EventApiController::class, 'update']);
-});
+Route::group(
+    ['middleware' => ['auth:sanctum']],
+    function () {
+
+        Route::group(['prefix' => 'v1'], function () {
+            Route::get('/events/active-events', [EventApiController::class, 'activeEvent']);
+            Route::apiResource('events', EventApiController::class)->except([
+                'update'
+            ]);
+            Route::patch('/events/{id}', [EventApiController::class, 'edit']);
+            Route::put('/events/{id}', [EventApiController::class, 'update']);
+        });
+    }
+);

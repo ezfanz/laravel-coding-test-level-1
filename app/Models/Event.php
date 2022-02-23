@@ -6,12 +6,13 @@ use App\Traits\Uuids;
 use App\Mail\EventCreation;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\Contracts\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
 {
-    use HasFactory, Uuids, SoftDeletes;
+    use HasFactory, Uuids, SoftDeletes, HasApiTokens;
 
     protected $table = "events";
 

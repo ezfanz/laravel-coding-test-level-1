@@ -20,20 +20,26 @@ use App\Http\Controllers\Api\V1\EventApiController;
 //     return $request->user();
 // });
 
-//PUBLIC API
-Route::post('/register', [AuthController::class, 'register']);
-
 Route::group(
-    ['middleware' => ['auth:sanctum']],
+    ['prefix' => 'v1'],
     function () {
 
-        Route::group(['prefix' => 'v1'], function () {
-            Route::get('/events/active-events', [EventApiController::class, 'activeEvent']);
-            Route::apiResource('events', EventApiController::class)->except([
-                'update'
-            ]);
-            Route::patch('/events/{id}', [EventApiController::class, 'edit']);
-            Route::put('/events/{id}', [EventApiController::class, 'update']);
-        });
+
+        //PUBLIC API
+        Route::post('/register', [AuthController::class, 'register']);
+
+        Route::group(
+            ['middleware' => ['auth:sanctum']],
+            function () {
+
+
+                Route::get('/events/active-events', [EventApiController::class, 'activeEvent']);
+                Route::apiResource('events', EventApiController::class)->except([
+                    'update'
+                ]);
+                Route::patch('/events/{id}', [EventApiController::class, 'edit']);
+                Route::put('/events/{id}', [EventApiController::class, 'update']);
+            }
+        );
     }
 );
